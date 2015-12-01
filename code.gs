@@ -1,25 +1,8 @@
-/*
-
-INSTALLATION INSTRUCTIONS:
-Step 1: Create GMail filter
-Matches: subject:(submittal receipt confirmation)
-Do this: Apply label "Sporcle/Payment"
-
-Step 2: Create Google Sheet with the following columns:
-Date // Game 1 Players // Game 1 Teams // Game 2 Players // Game 2 Teams // Total Payment // Location
-
-Step 3: Copy and paste code below into Script
-Access in Google Sheet under "Tools" > "Script Editor"
-
-Step 4: Run from Script Editor
-
-*/
-
 function parseSporcleReceiptMessages(start) {
  
   start = start || 0;
  
-  // Get the message threads labeled with Sporcle/Payment
+  // Get the message threads labeled with "Sporcle/Payment"
   var label = GmailApp.getUserLabelByName("Sporcle/Payment");
   var threads = label.getThreads();
   // Access to the current Spreadsheet for writing out data
