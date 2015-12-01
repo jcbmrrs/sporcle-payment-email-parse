@@ -24,8 +24,9 @@ Requires use of GMail, Google Sheets and this Google Apps Script.
 6. *Optional* - Add a trigger to run this item each time you open the associated Google Sheet
   - `Resources > Current project's triggers`
   - "Add new trigger"
-  - Settings: `parseSporcleReceiptMessages`, `Events = From spreadsheet`, `On open`
-  - `Save`
+  - Run: `parseSporcleReceiptMessages`
+  - Events: `From spreadsheet`, `On open`
+  - "Save"
 
 ### Notes:
 Created by Jacob A. Morris (jcbmrrs). 
