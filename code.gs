@@ -6,7 +6,7 @@ function parseSporcleReceiptMessages(start) {
   var label = GmailApp.getUserLabelByName("Sporcle/Payment");
   var threads = label.getThreads();
   // Access to the current Spreadsheet for writing out data
-  var sheet = SpreadsheetApp.getActiveSheet();
+  var sheet = SpreadsheetApp.getActiveSheet().getSheetByName("All Games");
   
   for (var i = 0; i < threads.length; i++) {
     // Get the first email message of a threads
