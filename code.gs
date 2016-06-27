@@ -6,7 +6,8 @@ function parseSporcleReceiptMessages(start) {
   var label = GmailApp.getUserLabelByName("Sporcle/Payment");
   var threads = label.getThreads();
   // Access to the current Spreadsheet for writing out data
-  var sheet = SpreadsheetApp.getActiveSheet().getSheetByName("All Games");
+   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("All Games");
+  
   
   for (var i = 0; i < threads.length; i++) {
     // Get the first email message of a threads
@@ -42,8 +43,17 @@ function parseSporcleReceiptMessages(start) {
       // Parse for date and log result
       var date = loc.toString().replace(/show at .* on /g, "");
       Logger.log(date);
+      // Logic for additional cells on new row
+      var row = sheet.getDataRange().getHeight()+1;
+      
       // Add rows of data to Spreadsheet
-      sheet.appendRow([date, game1players, game1teams, game2players, game2teams, pay.toString(), locale]);
+      sheet.appendRow([date, game1players, game1teams, game2players, game2teams, pay.toString(), locale, 
+                       "=SUM(B" + row + ",D" + row + ")", 
+                       "=AVERAGE(C" + row + ",E" + row + ")", 
+                       "=IF(H" + row + "=0,0,F" + row + "/H" + row + ")", 
+                       "=(B" + row + "*3+D" + row + "*2)*0.3", 
+                       "=K" + row + "-F" + row
+                       ]);
       // Remove label to ensure one-time processing
       threads[i].removeLabel(label);
     } // End if loop
